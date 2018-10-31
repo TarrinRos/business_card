@@ -12,7 +12,7 @@ class BusinessCard
   end
 
   def initialize(params)
-    @parsed_data = to_h(params)
+    @parsed_data = params.to_h
 
     @first_name = @parsed_data['first_name']
     @last_name = @parsed_data['last_name']
@@ -21,9 +21,16 @@ class BusinessCard
     @job = @parsed_data['job']
   end
 
-  def to_h(params)
-    sample = %w(first_name last_name phone email job)
-    params.select { |key, value|  sample.include?(key) }
+  def to_h
+    # sample = %w(first_name last_name phone email job)
+    # params.select { |key, value|  sample.include?(key) }
+    {
+      first_name: @first_name,
+      last_name: @last_name,
+      phone: @phone,
+      email: @email,
+      job: @job
+    }
   end
 
   def to_s
